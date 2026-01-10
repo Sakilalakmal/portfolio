@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Folder back -->
+  <path d="M2 8 L2 28 L30 28 L30 10 L14 10 L12 8 Z" fill="#FFC000"/>
+  <!-- Folder front -->
+  <rect x="2" y="12" width="28" height="16" fill="#FFD860"/>
+  <!-- Folder tab -->
+  <path d="M2 8 L12 8 L14 10 L2 10 Z" fill="#FFD860"/>
+  <!-- Shadow/depth -->
+  <rect x="2" y="26" width="28" height="2" fill="#CC9900"/>
+</svg>
