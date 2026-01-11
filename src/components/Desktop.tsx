@@ -13,6 +13,7 @@ import ProjectsWindow from "./windows/ProjectsWindow";
 import ProjectDetailsWindow from "./windows/ProjectDetailsWindow";
 import WeatherWindow from "./windows/WeatherWindow";
 import CalmMindPlayerWindow from "./windows/CalmMindPlayerWindow";
+import ContactWindow from "./windows/ContactWindow";
 import { useDesktopStore } from "@/store/desktopStore";
 import { getProjectById } from "@/data/projects";
 
@@ -21,19 +22,16 @@ const desktopIcons = [
   { icon: "/icons/computer.svg", label: "My Computer", windowId: null },
   { icon: "/icons/folder.svg", label: "Projects", windowId: "projects" },
   { icon: "/icons/about.svg", label: "About", windowId: "about" },
-  { icon: "/icons/contact.svg", label: "Contact", windowId: null },
+  { icon: "/icons/contact.svg", label: "Contact", windowId: "contact" },
 ];
 
 export default function Desktop() {
   const { windows, openWindow } = useDesktopStore();
 
-  // Open About, Weather, and Music Player windows on initial load
+  // Open windows on initial load
+  // Order matters: windows opened later appear on top
   useEffect(() => {
-    openWindow({
-      id: "about",
-      type: "about",
-      title: "About Me",
-    });
+    // Open Weather first (bottom layer)
     openWindow({
       id: "weather",
       type: "weather",
@@ -41,6 +39,8 @@ export default function Desktop() {
       x: window.innerWidth - 340,
       y: 14,
     });
+
+    // Open Music Player second
     openWindow({
       id: "calm-mind-player",
       type: "calm-mind-player",
@@ -49,6 +49,26 @@ export default function Desktop() {
       height: 380,
       x: 200,
       y: 60,
+    });
+
+    // Open Projects third (will be on top of Weather and Music)
+    openWindow({
+      id: "projects",
+      type: "projects",
+      title: "Projects",
+      width: 520,
+      height: 420,
+      x: 450,
+      y: 80,
+    });
+
+    // Open About last (top layer)
+    openWindow({
+      id: "about",
+      type: "about",
+      title: "About Me",
+      x: 100,
+      y: 50,
     });
   }, [openWindow]);
 
@@ -67,6 +87,14 @@ export default function Desktop() {
         title: "Projects",
         width: 520,
         height: 420,
+      });
+    } else if (windowId === "contact") {
+      openWindow({
+        id: "contact",
+        type: "contact",
+        title: "Contact",
+        width: 440,
+        height: 520,
       });
     }
   };
@@ -112,6 +140,8 @@ export default function Desktop() {
             return <AboutWindow key={window.id} />;
           case "projects":
             return <ProjectsWindow key={window.id} />;
+          case "contact":
+            return <ContactWindow key={window.id} />;
           case "weather":
             return <WeatherWindow key={window.id} />;
           case "calm-mind-player":
