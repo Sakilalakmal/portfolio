@@ -31,6 +31,7 @@ export default function DesktopWindow({
     closeWindow,
     windows,
     updateWindowPosition,
+    updateWindowSize,
   } = useDesktopStore();
 
   const isActive = activeWindowId === id;
@@ -55,12 +56,33 @@ export default function DesktopWindow({
           ? { x: windowState.x, y: windowState.y }
           : undefined
       }
-      onDragStop={(e: any, d: { x: number; y: number }) => {
+      onDragStop={(
+        e: MouseEvent | TouchEvent | any,
+        d: { x: number; y: number }
+      ) => {
         updateWindowPosition(id, d.x, d.y);
+      }}
+      onResizeStop={(
+        e: MouseEvent | TouchEvent,
+        direction,
+        ref,
+        delta,
+        position
+      ) => {
+        if (updateWindowSize) {
+          updateWindowSize(
+            id,
+            parseInt(ref.style.width),
+            parseInt(ref.style.height)
+          );
+        }
+        updateWindowPosition(id, position.x, position.y);
       }}
       onMouseDown={() => focusWindow(id)}
       dragHandleClassName="window-title-bar"
-      enableResizing={false}
+      enableResizing={true}
+      minWidth={300}
+      minHeight={200}
       bounds="window"
       style={{ zIndex: isActive ? 50 : 10 }}
     >
