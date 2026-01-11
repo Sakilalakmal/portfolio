@@ -15,7 +15,8 @@
   --color-win98-dark: var(--win98-dark);
   --color-win98-light: var(--win98-light);
   --color-win98-blue: var(--win98-blue);
-  --font-win98: Tahoma, "MS Sans Serif", Verdana, sans-serif;
+  --font-win98: var(--font-msw98-regular), "MS Sans Serif", Tahoma, sans-serif;
+  --font-win98-bold: var(--font-msw98-bold), "MS Sans Serif", Tahoma, sans-serif;
 }
 
 /* Global reset for full viewport */
@@ -26,7 +27,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  font-family: Tahoma, "MS Sans Serif", Verdana, sans-serif;
+  font-family: var(--font-msw98-regular), "MS Sans Serif", Tahoma, sans-serif;
   font-size: 11px;
   color: var(--win98-black);
   /* Disable text selection for authentic desktop feel */

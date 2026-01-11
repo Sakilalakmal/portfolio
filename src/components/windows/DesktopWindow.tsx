@@ -86,8 +86,8 @@ export default function DesktopWindow({
       onMouseDown={() => focusWindow(id)}
       dragHandleClassName="window-title-bar"
       enableResizing={true}
-      minWidth={300}
-      minHeight={200}
+      minWidth={id === "calm-mind-player" ? 300 : 300}
+      minHeight={id === "calm-mind-player" ? 480 : 200}
       bounds="window"
       style={{ zIndex: isActive ? 50 : 10 }}
     >

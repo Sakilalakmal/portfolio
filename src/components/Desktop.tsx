@@ -45,10 +45,10 @@ export default function Desktop() {
       id: "calm-mind-player",
       type: "calm-mind-player",
       title: "Calm Your Messy Mind",
-      width: 360,
-      height: 520,
+      width: 300,
+      height: 380,
       x: 200,
-      y: 80,
+      y: 60,
     });
   }, [openWindow]);
 
