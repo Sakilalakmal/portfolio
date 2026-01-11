@@ -16,8 +16,8 @@ const msw98Bold = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Windows 98",
-  description: "A Windows 98-style portfolio desktop",
+  title: "Portfolio | sakila lakmal",
+  description: "sakila lakmal portfolio",
 };
 
 export default function RootLayout({

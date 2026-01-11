@@ -10,6 +10,7 @@ interface ProjectDetailsWindowProps {
 // Tech stack badge mapping for shields.io
 const getTechBadge = (tech: string): string => {
   const badges: Record<string, string> = {
+    // Kada Mandiya badges
     "Node.js":
       "https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white",
     "Express.js":
@@ -34,6 +35,66 @@ const getTechBadge = (tech: string): string => {
       "https://img.shields.io/badge/Docker_Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white",
     "RabbitMQ Management UI":
       "https://img.shields.io/badge/RabbitMQ_UI-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white",
+
+    // LMS badges
+    "Next.js 16 (App Router)":
+      "https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white",
+    "React 19":
+      "https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black",
+    "Tailwind CSS 4":
+      "https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white",
+    "Radix UI":
+      "https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radixui&logoColor=white",
+    "Shadcn UI":
+      "https://img.shields.io/badge/Shadcn_UI-000000?style=for-the-badge&logo=shadcnui&logoColor=white",
+    "Lucide React":
+      "https://img.shields.io/badge/Lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white",
+    TipTap:
+      "https://img.shields.io/badge/TipTap-000000?style=for-the-badge&logo=tiptap&logoColor=white",
+    Recharts:
+      "https://img.shields.io/badge/Recharts-FF6B6B?style=for-the-badge&logo=chartdotjs&logoColor=white",
+    "TanStack Table":
+      "https://img.shields.io/badge/TanStack_Table-FF4154?style=for-the-badge&logo=react&logoColor=white",
+    PostgreSQL:
+      "https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white",
+    "Prisma ORM":
+      "https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white",
+    "Next.js Server Actions":
+      "https://img.shields.io/badge/Server_Actions-000000?style=for-the-badge&logo=nextdotjs&logoColor=white",
+    "REST APIs":
+      "https://img.shields.io/badge/REST_APIs-009688?style=for-the-badge&logo=fastapi&logoColor=white",
+    "Better Auth":
+      "https://img.shields.io/badge/Better_Auth-4F46E5?style=for-the-badge&logo=auth0&logoColor=white",
+    "Email OTP":
+      "https://img.shields.io/badge/Email_OTP-EA4335?style=for-the-badge&logo=gmail&logoColor=white",
+    "GitHub OAuth":
+      "https://img.shields.io/badge/GitHub_OAuth-181717?style=for-the-badge&logo=github&logoColor=white",
+    "Google OAuth":
+      "https://img.shields.io/badge/Google_OAuth-4285F4?style=for-the-badge&logo=google&logoColor=white",
+    Arcjet:
+      "https://img.shields.io/badge/Arcjet-6366F1?style=for-the-badge&logo=shield&logoColor=white",
+    "Stripe Checkout":
+      "https://img.shields.io/badge/Stripe_Checkout-008CDD?style=for-the-badge&logo=stripe&logoColor=white",
+    "Stripe Webhooks":
+      "https://img.shields.io/badge/Stripe_Webhooks-635BFF?style=for-the-badge&logo=stripe&logoColor=white",
+    "One-Time Payments":
+      "https://img.shields.io/badge/One_Time_Payments-00D924?style=for-the-badge&logo=cashapp&logoColor=white",
+    "Subscription Plans":
+      "https://img.shields.io/badge/Subscriptions-FF9900?style=for-the-badge&logo=stripe&logoColor=white",
+    "AWS S3":
+      "https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white",
+    "Presigned URLs":
+      "https://img.shields.io/badge/Presigned_URLs-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white",
+    Resend:
+      "https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=mail&logoColor=white",
+    "Transactional Emails":
+      "https://img.shields.io/badge/Transactional_Emails-EA4335?style=for-the-badge&logo=gmail&logoColor=white",
+    "OTP Notifications":
+      "https://img.shields.io/badge/OTP_Notifications-0088CC?style=for-the-badge&logo=telegram&logoColor=white",
+    Jenkins:
+      "https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white",
+    "Docker Hub":
+      "https://img.shields.io/badge/Docker_Hub-2496ED?style=for-the-badge&logo=docker&logoColor=white",
   };
   return (
     badges[tech] ||
