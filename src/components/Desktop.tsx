@@ -12,6 +12,7 @@ import AboutWindow from "./windows/AboutWindow";
 import ProjectsWindow from "./windows/ProjectsWindow";
 import ProjectDetailsWindow from "./windows/ProjectDetailsWindow";
 import WeatherWindow from "./windows/WeatherWindow";
+import CalmMindPlayerWindow from "./windows/CalmMindPlayerWindow";
 import { useDesktopStore } from "@/store/desktopStore";
 import { getProjectById } from "@/data/projects";
 
@@ -26,7 +27,7 @@ const desktopIcons = [
 export default function Desktop() {
   const { windows, openWindow } = useDesktopStore();
 
-  // Open About and Weather windows on initial load
+  // Open About, Weather, and Music Player windows on initial load
   useEffect(() => {
     openWindow({
       id: "about",
@@ -39,6 +40,15 @@ export default function Desktop() {
       title: "Weather",
       x: window.innerWidth - 340,
       y: 14,
+    });
+    openWindow({
+      id: "calm-mind-player",
+      type: "calm-mind-player",
+      title: "Calm Your Messy Mind",
+      width: 360,
+      height: 520,
+      x: 200,
+      y: 80,
     });
   }, [openWindow]);
 
@@ -104,6 +114,8 @@ export default function Desktop() {
             return <ProjectsWindow key={window.id} />;
           case "weather":
             return <WeatherWindow key={window.id} />;
+          case "calm-mind-player":
+            return <CalmMindPlayerWindow key={window.id} />;
           case "project-details":
             // Extract project ID from window ID (format: "project:ID")
             const projectId = window.id.split(":")[1];
