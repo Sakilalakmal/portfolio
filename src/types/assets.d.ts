@@ -3,12 +3,33 @@ declare module "*.glb" {
   export default src;
 }
 
-declare module "*.gltf" {
+declare module "*.png" {
   const src: string;
   export default src;
 }
 
-declare module "*.png" {
+declare module "meshline" {
+  export const MeshLineGeometry: any;
+  export const MeshLineMaterial: any;
+}
+
+declare module "@react-three/fiber" {
+  interface ThreeElements {
+    meshLineGeometry: any;
+    meshLineMaterial: any;
+  }
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      meshLineGeometry: any;
+      meshLineMaterial: any;
+    }
+  }
+}
+
+declare module "*.gltf" {
   const src: string;
   export default src;
 }
@@ -17,3 +38,5 @@ declare module "*.jpg" {
   const src: string;
   export default src;
 }
+
+export {};

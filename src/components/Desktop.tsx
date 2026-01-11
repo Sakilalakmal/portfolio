@@ -11,9 +11,9 @@ import Taskbar from "./Taskbar";
 import AboutWindow from "./windows/AboutWindow";
 import ProjectsWindow from "./windows/ProjectsWindow";
 import ProjectDetailsWindow from "./windows/ProjectDetailsWindow";
+import WeatherWindow from "./windows/WeatherWindow";
 import { useDesktopStore } from "@/store/desktopStore";
 import { getProjectById } from "@/data/projects";
-import TimeLanyardWidget from "./widgets/TimeLanyardWidget";
 
 // Desktop icons configuration
 const desktopIcons = [
@@ -26,12 +26,19 @@ const desktopIcons = [
 export default function Desktop() {
   const { windows, openWindow } = useDesktopStore();
 
-  // Open About window on initial load
+  // Open About and Weather windows on initial load
   useEffect(() => {
     openWindow({
       id: "about",
       type: "about",
       title: "About Me",
+    });
+    openWindow({
+      id: "weather",
+      type: "weather",
+      title: "Weather",
+      x: window.innerWidth - 340,
+      y: 14,
     });
   }, [openWindow]);
 
@@ -61,6 +68,7 @@ export default function Desktop() {
         relative overflow-hidden
       "
       style={{
+        background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
         backgroundImage: "url('/wallpapers/default.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -94,6 +102,8 @@ export default function Desktop() {
             return <AboutWindow key={window.id} />;
           case "projects":
             return <ProjectsWindow key={window.id} />;
+          case "weather":
+            return <WeatherWindow key={window.id} />;
           case "project-details":
             // Extract project ID from window ID (format: "project:ID")
             const projectId = window.id.split(":")[1];
@@ -107,9 +117,6 @@ export default function Desktop() {
 
       {/* Taskbar */}
       <Taskbar />
-
-      {/* 3D Lanyard Widget */}
-      <TimeLanyardWidget />
     </div>
   );
 }

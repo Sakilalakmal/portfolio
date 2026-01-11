@@ -6,6 +6,7 @@
  */
 
 import { Rnd } from "react-rnd";
+import type { DraggableData, RndDragEvent } from "react-rnd";
 import { useDesktopStore } from "@/store/desktopStore";
 import { useEffect, useState } from "react";
 
@@ -15,6 +16,8 @@ interface DesktopWindowProps {
   children: React.ReactNode;
   width?: number;
   height?: number;
+  hideCloseButton?: boolean;
+  hideTitle?: boolean;
 }
 
 export default function DesktopWindow({
@@ -23,6 +26,8 @@ export default function DesktopWindow({
   children,
   width = 560,
   height = 360,
+  hideCloseButton = false,
+  hideTitle = false,
 }: DesktopWindowProps) {
   const {
     activeWindowId,
@@ -39,7 +44,10 @@ export default function DesktopWindow({
 
   // Local state for hydration mismatch prevention (Rnd needs client-side only)
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   if (!mounted || !windowState) return null;
 
@@ -56,10 +64,7 @@ export default function DesktopWindow({
           ? { x: windowState.x, y: windowState.y }
           : undefined
       }
-      onDragStop={(
-        e: MouseEvent | TouchEvent | any,
-        d: { x: number; y: number }
-      ) => {
+      onDragStop={(_e: RndDragEvent, d: DraggableData) => {
         updateWindowPosition(id, d.x, d.y);
       }}
       onResizeStop={(
@@ -107,7 +112,8 @@ export default function DesktopWindow({
         <div
           className={`
             window-title-bar
-            h-[32px] px-1 mx-[2px] mt-[2px]
+            ${hideTitle ? "h-[8px] opacity-0" : "h-[32px]"}
+            px-1 mx-[2px] mt-[2px]
             flex items-center
             select-none cursor-default
             ${
@@ -118,62 +124,68 @@ export default function DesktopWindow({
           `}
         >
           {/* Window Title */}
-          <span
-            className="flex-1 text-white text-[14px] font-bold px-1 truncate drop-shadow-sm"
-            style={{
-              fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif',
-              letterSpacing: "0.5px",
-            }}
-          >
-            {title}
-          </span>
+          {!hideTitle && (
+            <span
+              className="flex-1 text-white text-[14px] font-bold px-1 truncate drop-shadow-sm"
+              style={{
+                fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif',
+                letterSpacing: "0.5px",
+              }}
+            >
+              {title}
+            </span>
+          )}
 
           {/* Window Controls */}
-          <div className="flex gap-[4px] mr-[1px]">
-            {/* Minimize Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                minimizeWindow(id);
-              }}
-              className="
-                w-[22px] h-[22px]
-                bg-[#C0C0C0]
-                flex items-center justify-center
-                border-t-[#FFFFFF] border-l-[#FFFFFF]
-                border-b-[#000000] border-r-[#000000]
-                border-t-2 border-l-2 border-b border-r
-                active:border-t-[#000000] active:border-l-[#000000]
-                active:border-b-[#FFFFFF] active:border-r-[#FFFFFF]
-                active:border-t active:border-l active:border-b-2 active:border-r-2
-              "
-            >
-              <div className="w-2 h-[2px] bg-black mt-2" />
-            </button>
+          {!hideTitle && (
+            <div className="flex gap-[4px] mr-[1px]">
+              {/* Minimize Button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  minimizeWindow(id);
+                }}
+                className="
+                  w-[22px] h-[22px]
+                  bg-[#C0C0C0]
+                  flex items-center justify-center
+                  border-t-[#FFFFFF] border-l-[#FFFFFF]
+                  border-b-[#000000] border-r-[#000000]
+                  border-t-2 border-l-2 border-b border-r
+                  active:border-t-[#000000] active:border-l-[#000000]
+                  active:border-b-[#FFFFFF] active:border-r-[#FFFFFF]
+                  active:border-t active:border-l active:border-b-2 active:border-r-2
+                "
+              >
+                <div className="w-2 h-[2px] bg-black mt-2" />
+              </button>
 
-            {/* Close Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeWindow(id);
-              }}
-              className="
-                w-[22px] h-[22px]
-                bg-[#c0392b]
-                flex items-center justify-center
-                text-[14px] font-bold text-white
-                border-t-[#ff8a80] border-l-[#ff8a80]
-                border-b-[#000000] border-r-[#000000]
-                border-t-2 border-l-2 border-b border-r
-                active:border-t-[#000000] active:border-l-[#000000]
-                active:border-b-[#ff8a80] active:border-r-[#ff8a80]
-                active:border-t active:border-l active:border-b-2 active:border-r-2
-              "
-              style={{ textShadow: "0 1px 0 rgba(0,0,0,0.5)" }}
-            >
-              ✕
-            </button>
-          </div>
+              {/* Close Button */}
+              {!hideCloseButton && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeWindow(id);
+                  }}
+                  className="
+                  w-[22px] h-[22px]
+                  bg-[#c0392b]
+                  flex items-center justify-center
+                  text-[14px] font-bold text-white
+                  border-t-[#ff8a80] border-l-[#ff8a80]
+                  border-b-[#000000] border-r-[#000000]
+                  border-t-2 border-l-2 border-b border-r
+                  active:border-t-[#000000] active:border-l-[#000000]
+                  active:border-b-[#ff8a80] active:border-r-[#ff8a80]
+                  active:border-t active:border-l active:border-b-2 active:border-r-2
+                "
+                  style={{ textShadow: "0 1px 0 rgba(0,0,0,0.5)" }}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Window Content */}
