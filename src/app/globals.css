@@ -10,11 +10,20 @@
   --win98-black: #000000;
 }
 
-@theme inline {
+@theme {
   --color-win98-gray: var(--win98-gray);
   --color-win98-dark: var(--win98-dark);
   --color-win98-light: var(--win98-light);
   --color-win98-blue: var(--win98-blue);
+
+  /* Set custom fonts as default sans-serif family */
+  --font-family-sans: var(--font-msw98-regular), "MS Sans Serif", Tahoma,
+    sans-serif;
+  --font-family-serif: var(--font-msw98-regular), "MS Sans Serif", Tahoma,
+    sans-serif;
+  --font-family-mono: var(--font-msw98-regular), "Courier New", monospace;
+
+  /* Legacy variables for compatibility */
   --font-win98: var(--font-msw98-regular), "MS Sans Serif", Tahoma, sans-serif;
   --font-win98-bold: var(--font-msw98-bold), "MS Sans Serif", Tahoma, sans-serif;
 }
@@ -32,6 +41,11 @@ body {
   color: var(--win98-black);
   /* Disable text selection for authentic desktop feel */
   user-select: none;
+}
+
+/* Apply font to all elements to override Tailwind defaults */
+* {
+  font-family: var(--font-msw98-regular), "MS Sans Serif", Tahoma, sans-serif;
 }
 
 /* Remove focus outlines for cleaner look */

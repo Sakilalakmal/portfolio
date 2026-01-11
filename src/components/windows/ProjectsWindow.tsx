@@ -11,47 +11,48 @@ export default function ProjectsWindow() {
       id: `project:${projectId}`,
       type: "project-details",
       title: `Project: ${title}`,
-      width: 820,
-      height: 520,
+      width: 900,
+      height: 600,
     });
   };
 
   return (
-    <DesktopWindow id="projects" title="Projects" width={520} height={420}>
-      <div className="h-full bg-white p-4 overflow-y-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <DesktopWindow id="projects" title="Projects" width={600} height={480}>
+      <div className="h-full bg-white p-8 overflow-y-auto">
+        {/* Content */}
+        <div className="flex flex-wrap gap-8 justify-center items-start">
           {projects.map((project) => (
             <div
               key={project.id}
               className="
                 group
                 flex flex-col items-center
-                p-2
-                border border-transparent
-                hover:bg-blue-50 hover:border-blue-200
+                p-4
                 cursor-pointer
-                transition-colors
-                rounded-sm
+                transition-all
+                hover:scale-105
+                hover:bg-blue-50
+                rounded-lg
               "
               onDoubleClick={() => handleOpenProject(project.id, project.name)}
             >
-              {/* Icon/Thumbnail */}
-              <div className="relative w-12 h-12 mb-2">
+              {/* Large Folder Icon */}
+              <div className="relative w-24 h-24 mb-3 drop-shadow-lg">
                 <Image
-                  src="/icons/folder.svg" // Using generic folder icon for list view as per "small icon" request, or could use thumb
+                  src="/icons/folder.svg"
                   alt={project.name}
-                  width={48}
-                  height={48}
+                  width={96}
+                  height={96}
                   className="object-contain"
                 />
               </div>
 
-              {/* Text */}
-              <div className="text-center">
-                <div className="text-[13px] font-medium text-black group-hover:text-blue-700">
+              {/* Project Name */}
+              <div className="text-center max-w-[200px]">
+                <div className="text-[14px] font-bold text-black">
                   {project.name}
                 </div>
-                <div className="text-[11px] text-gray-500 mt-0.5 px-1 truncate max-w-[120px]">
+                <div className="text-[11px] text-gray-600 mt-1">
                   {project.tagline}
                 </div>
               </div>

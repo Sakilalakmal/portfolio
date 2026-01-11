@@ -128,7 +128,6 @@ export default function DesktopWindow({
             <span
               className="flex-1 text-white text-[14px] font-bold px-1 truncate drop-shadow-sm"
               style={{
-                fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif',
                 letterSpacing: "0.5px",
               }}
             >

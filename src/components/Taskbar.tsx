@@ -36,7 +36,6 @@ export default function Taskbar() {
             border-b-[#3a3a3a] border-r-[#3a3a3a]
             border-t border-l border-b border-r
           "
-          style={{ fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif' }}
         >
           12:00 PM
         </div>

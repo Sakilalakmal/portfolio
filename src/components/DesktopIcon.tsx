@@ -51,7 +51,6 @@ export default function DesktopIcon({
           line-clamp-2 text-ellipsis overflow-hidden
         "
         style={{
-          fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif',
           textShadow: "1px 1px 2px rgba(0,0,0,0.9)",
         }}
       >

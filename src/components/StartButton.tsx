@@ -21,7 +21,6 @@ export default function StartButton() {
         cursor-pointer
         select-none
       "
-      style={{ fontFamily: 'Tahoma, "MS Sans Serif", Verdana, sans-serif' }}
     >
       {/* Windows logo - 5x5 grid for better visibility */}
       <div className="w-5 h-5 grid grid-cols-2 grid-rows-2 gap-[1px]">
