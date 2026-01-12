@@ -11,10 +11,11 @@ export default function Taskbar() {
       className="
         fixed bottom-0 left-0 right-0
         h-[52px]
-        bg-[#1b1b1b]
+        bg-[#1b1b1b]/30
+        backdrop-blur-md
         flex items-center
-        border-t-2 border-t-[#3a3a3a]
-        shadow-[inset_0_1px_0_#555555]
+        border-t-2 border-t-white/20
+        shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]
         z-50
       "
     >
@@ -31,9 +32,9 @@ export default function Taskbar() {
             px-3 h-[36px]
             flex items-center
             text-[13px] text-white
-            bg-[#1b1b1b]
-            border-t-[#101010] border-l-[#101010]
-            border-b-[#3a3a3a] border-r-[#3a3a3a]
+            bg-black/20
+            border-t-white/10 border-l-white/10
+            border-b-white/30 border-r-white/30
             border-t border-l border-b border-r
           "
         >

@@ -103,15 +103,8 @@ export default function Desktop() {
     <div
       className="
         w-screen h-screen
-        relative overflow-hidden
+        relative z-10 overflow-hidden
       "
-      style={{
-        background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
-        backgroundImage: "url('/wallpapers/default.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
     >
       {/* Desktop icons grid - left-aligned column */}
       <div
