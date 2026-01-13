@@ -59,7 +59,6 @@ export const projects: Project[] = [
       "Services publish and consume domain events via RabbitMQ",
       "No tight coupling between services",
       "Fully asynchronous, scalable design",
-      "This architecture mirrors real enterprise backend systems, not tutorial-level apps",
     ],
     security: [
       "Stateless JWT authentication (locally verified in each service)",
