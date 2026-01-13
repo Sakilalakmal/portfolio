@@ -7,13 +7,16 @@
 
 import { useEffect } from "react";
 import DesktopIcon from "./DesktopIcon";
-import Taskbar from "./Taskbar";
+import Taskbar from "./taskbar/Taskbar";
 import AboutWindow from "./windows/AboutWindow";
 import ProjectsWindow from "./windows/ProjectsWindow";
 import ProjectDetailsWindow from "./windows/ProjectDetailsWindow";
 import WeatherWindow from "./windows/WeatherWindow";
 import CalmMindPlayerWindow from "./windows/CalmMindPlayerWindow";
 import ContactWindow from "./windows/ContactWindow";
+import SkillsWindow from "./windows/SkillsWindow";
+import ResumeWindow from "./windows/ResumeWindow";
+import TerminalWindow from "./windows/TerminalWindow";
 import { useDesktopStore } from "@/store/desktopStore";
 import { getProjectById } from "@/data/projects";
 
@@ -23,6 +26,7 @@ const desktopIcons = [
   { icon: "/icons/folder.svg", label: "Projects", windowId: "projects" },
   { icon: "/icons/about.svg", label: "About", windowId: "about" },
   { icon: "/icons/contact.svg", label: "Contact", windowId: "contact" },
+  { icon: "/terminal.png", label: "Terminal", windowId: "terminal" },
 ];
 
 export default function Desktop() {
@@ -96,6 +100,14 @@ export default function Desktop() {
         width: 440,
         height: 520,
       });
+    } else if (windowId === "terminal") {
+      openWindow({
+        id: "terminal",
+        type: "terminal",
+        title: "Terminal",
+        width: 650,
+        height: 480,
+      });
     }
   };
 
@@ -135,6 +147,12 @@ export default function Desktop() {
             return <ProjectsWindow key={window.id} />;
           case "contact":
             return <ContactWindow key={window.id} />;
+          case "skills":
+            return <SkillsWindow key={window.id} />;
+          case "resume":
+            return <ResumeWindow key={window.id} />;
+          case "terminal":
+            return <TerminalWindow key={window.id} />;
           case "weather":
             return <WeatherWindow key={window.id} />;
           case "calm-mind-player":
