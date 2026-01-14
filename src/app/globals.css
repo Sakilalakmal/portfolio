@@ -73,8 +73,64 @@ body {
   font-family: var(--font-msw98-regular), "MS Sans Serif", Tahoma, sans-serif;
   font-size: 11px;
   color: var(--win98-black);
+  cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, default !important;
   /* Disable text selection for authentic desktop feel */
   user-select: none;
+}
+
+:where(html, html *) {
+  cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, default !important;
+}
+
+:where(body, body *) {
+  cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, default !important;
+}
+
+/* Keep Win98 hand cursor consistent for clickable UI */
+:where(
+    a[href],
+    area[href],
+    button,
+    summary,
+    label,
+    select,
+    option,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="range"],
+    input[type="color"],
+    input[type="file"],
+    [role="button"],
+    [role="link"],
+    [role="menuitem"],
+    [role="option"],
+    [role="tab"]
+  ) {
+  cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, pointer !important;
+}
+
+/* Do not break text inputs / editing cursor */
+:where(
+    textarea,
+    input:not([type]),
+    input[type="text"],
+    input[type="search"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    input[type="datetime-local"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    [contenteditable]:not([contenteditable="false"])
+  ) {
+  cursor: text !important;
 }
 
 /* Apply font to all elements to override Tailwind defaults */
@@ -168,5 +224,44 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .cursor-os {
+    cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, default !important;
+  }
+
+  .cursor-os-text {
+    cursor: text !important;
+  }
+
+  /* Override Tailwind cursor utilities to keep the custom cursor consistent */
+  .cursor-default {
+    cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, default !important;
+  }
+
+  .cursor-pointer {
+    cursor: url("/cursors/hand.cur"), url("/cursors/hand.png?v=4") 10 4, pointer !important;
+  }
+
+  :is(
+      textarea,
+      input:not([type]),
+      input[type="text"],
+      input[type="search"],
+      input[type="email"],
+      input[type="password"],
+      input[type="tel"],
+      input[type="url"],
+      input[type="number"],
+      input[type="date"],
+      input[type="datetime-local"],
+      input[type="month"],
+      input[type="time"],
+      input[type="week"],
+      [contenteditable]:not([contenteditable="false"])
+    ) {
+    cursor: text;
   }
 }
