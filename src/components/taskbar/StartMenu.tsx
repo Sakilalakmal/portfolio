@@ -46,6 +46,8 @@ export default function StartMenu({
   if (!isOpen) return null;
 
   const menuItems = [
+    { label: "My Computer", action: "my-computer" },
+    { type: "separator" },
     { label: "About Me", action: "about" },
     { label: "Projects", action: "projects" },
     { label: "Skills", action: "skills" },

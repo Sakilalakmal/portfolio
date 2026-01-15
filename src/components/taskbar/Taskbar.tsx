@@ -16,6 +16,9 @@ export default function Taskbar() {
   const handleMenuItemClick = (action: string) => {
     // Placeholder functions for menu items
     switch (action) {
+      case "my-computer":
+        openMyComputerWindow();
+        break;
       case "about":
         openAboutWindow();
         break;
@@ -43,6 +46,16 @@ export default function Taskbar() {
   };
 
   // Placeholder window functions
+  const openMyComputerWindow = () => {
+    openWindow({
+      id: "my-computer",
+      type: "my-computer",
+      title: "My Computer",
+      width: 720,
+      height: 520,
+    });
+  };
+
   const openAboutWindow = () => {
     openWindow({
       id: "about",

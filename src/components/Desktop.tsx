@@ -17,12 +17,19 @@ import ContactWindow from "./windows/ContactWindow";
 import SkillsWindow from "./windows/SkillsWindow";
 import ResumeWindow from "./windows/ResumeWindow";
 import TerminalWindow from "./windows/TerminalWindow";
+import MyComputerWindow from "./windows/MyComputerWindow";
+import SystemPropertiesWindow from "./windows/SystemPropertiesWindow";
+import MicroservicesDriveWindow from "./windows/MicroservicesDriveWindow";
+import MicroservicesDetailsWindow from "./windows/MicroservicesDetailsWindow";
+import MonolithicDetailsWindow from "./windows/MonolithicDetailsWindow";
+import DevOpsDriveWindow from "./windows/DevOpsDriveWindow";
+import ServiceDetailsWindow from "./windows/ServiceDetailsWindow";
 import { useDesktopStore } from "@/store/desktopStore";
 import { getProjectById } from "@/data/projects";
 
 // Desktop icons configuration
 const desktopIcons = [
-  { icon: "/icons/computer.svg", label: "My Computer", windowId: null },
+  { icon: "/icons/computer.svg", label: "My Computer", windowId: "my-computer" },
   { icon: "/icons/folder.svg", label: "Projects", windowId: "projects" },
   { icon: "/icons/about.svg", label: "About", windowId: "about" },
   { icon: "/icons/contact.svg", label: "Contact", windowId: "contact" },
@@ -78,7 +85,15 @@ export default function Desktop() {
 
   // Handle icon click
   const handleIconClick = (windowId: string | null) => {
-    if (windowId === "about") {
+    if (windowId === "my-computer") {
+      openWindow({
+        id: "my-computer",
+        type: "my-computer",
+        title: "My Computer",
+        width: 720,
+        height: 520,
+      });
+    } else if (windowId === "about") {
       openWindow({
         id: "about",
         type: "about",
@@ -123,7 +138,7 @@ export default function Desktop() {
         className="
           absolute top-3 left-3
           flex flex-col gap-1
-          pb-[50px]
+          pb-12.5
         "
       >
         {desktopIcons.map((item) => (
@@ -141,6 +156,22 @@ export default function Desktop() {
         if (window.isMinimized) return null;
 
         switch (window.type) {
+          case "my-computer":
+            return <MyComputerWindow key={window.id} />;
+          case "system-properties":
+            return <SystemPropertiesWindow key={window.id} />;
+          case "architectures-drive":
+            return <MicroservicesDriveWindow key={window.id} />;
+          case "microservices-details":
+            return <MicroservicesDetailsWindow key={window.id} />;
+          case "monolithic-details":
+            return <MonolithicDetailsWindow key={window.id} />;
+          case "devops-drive":
+            return <DevOpsDriveWindow key={window.id} />;
+          case "service-details":
+            // Extract service name from window ID (format: "service-details:serviceName")
+            const serviceName = window.id.split(":")[1];
+            return <ServiceDetailsWindow key={window.id} serviceName={serviceName} />;
           case "about":
             return <AboutWindow key={window.id} />;
           case "projects":
