@@ -265,3 +265,24 @@ body {
     cursor: text;
   }
 }
+
+/* Terminal Custom Scrollbar */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(161, 94, 225, 0.3);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(161, 94, 225, 0.5);
+}
+

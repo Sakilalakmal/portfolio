@@ -94,13 +94,13 @@ export default function AboutWindow() {
             }`}
           >
             {/* Portrait Card */}
-            <div className="bg-white p-3 shadow-sm border border-gray-100 mb-6 w-full max-w-[280px]">
-              <div className="aspect-[3/4] relative bg-gray-100 w-full overflow-hidden filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500">
+            <div className="bg-white p-3 shadow-sm border border-gray-100 mb-6 w-full max-w-[280px] mx-auto">
+              <div className="aspect-[3/4] relative bg-gray-100 w-full overflow-hidden">
                 <Image
-                  src="/sakila-lakmal.png"
+                  src="/sakila_lakmal.png"
                   alt="Portrait"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
               </div>
             </div>

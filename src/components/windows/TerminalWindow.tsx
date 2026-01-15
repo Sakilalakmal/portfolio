@@ -33,9 +33,25 @@ const aboutContent = [
   "",
 ];
 
+type PromptSegment = {
+  text: string;
+  color: string;
+};
+
+const renderPrompt = (): PromptSegment[] => [
+  { text: "sakila@kada-os", color: "#A15EE1" },
+  { text: ":", color: "#6B7280" },
+  { text: "~/portfolio", color: "#6B7280" },
+  { text: " (", color: "#6B7280" },
+  { text: "main", color: "#8B5CF6" },
+  { text: ") ", color: "#6B7280" },
+  { text: "$", color: "#C084FC" },
+  { text: " ", color: "transparent" },
+];
+
 export default function TerminalWindow() {
   const [lines, setLines] = useState<string[]>([
-    "Terminal v1.0.0",
+    "Terminal v1.0.0 - Modern Shell",
     "Type @me or @about for info",
     "",
   ]);
@@ -43,6 +59,7 @@ export default function TerminalWindow() {
   const [isStreaming, setIsStreaming] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const promptSegments = renderPrompt();
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -99,52 +116,92 @@ export default function TerminalWindow() {
   };
 
   return (
-    <DesktopWindow id="terminal" title="Terminal" width={650} height={480}>
-      <div
-        className="h-full overflow-hidden p-0 cursor-text"
-        onClick={handleTerminalClick}
-        style={{ backgroundColor: "#001a00" }}
-      >
-        <div
-          ref={terminalRef}
-          className="
-            h-full overflow-y-auto overflow-x-hidden
-            p-4
-            font-mono text-[14px] leading-relaxed
-          "
+    <DesktopWindow id="terminal" title="Terminal" width={700} height={520}>
+      <div className="h-full overflow-hidden relative">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0"
           style={{
-            color: "#00FF66",
-            backgroundColor: "#001a00",
+            backgroundImage: 'url(/wallpapers/default.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
           }}
-        >
-          {lines.map((line, index) => (
-            <div key={index} className="whitespace-pre-wrap break-words">
-              {line}
+        />
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 z-1 bg-black/50 backdrop-blur-[2px]" />
+        
+        {/* Terminal Content */}
+        <div className="relative z-10 h-full flex flex-col">
+          {/* Terminal Header Bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-b border-white/10"
+               style={{ backgroundColor: 'rgba(15, 15, 22, 0.95)' }}>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[#A15EE1]/70" />
+              <span className="text-sm font-mono text-[#A15EE1] font-semibold">terminal</span>
             </div>
-          ))}
-          {!isStreaming && (
-            <div className="flex items-center">
-              <span className="mr-1">$</span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="
-                  flex-1 bg-transparent outline-none border-none
-                  font-mono text-[14px]
-                "
-                style={{
-                  color: "#00FF66",
-                  caretColor: "#00FF66",
-                }}
-                autoComplete="off"
-                spellCheck={false}
-                disabled={isStreaming}
-              />
+            <div className="w-2 h-2 rounded-full bg-[#A15EE1]/50 animate-pulse" />
+          </div>
+          
+          {/* Terminal Body */}
+          <div
+            className="flex-1 overflow-hidden cursor-text"
+            onClick={handleTerminalClick}
+          >
+            <div
+              ref={terminalRef}
+              className="h-full overflow-y-auto overflow-x-hidden px-5 py-4 terminal-scrollbar"
+              style={{
+                fontFamily: '"JetBrains Mono", "Fira Code", "Consolas", monospace',
+                fontSize: '14px',
+                lineHeight: '1.6',
+              }}
+            >
+              {lines.map((line, index) => (
+                <div 
+                  key={index} 
+                  className="whitespace-pre-wrap wrap-break text-gray-300"
+                  style={{ textShadow: '0 0 2px rgba(0,0,0,0.5)' }}
+                >
+                  {line}
+                </div>
+              ))}
+              {!isStreaming && (
+                <div className="flex items-center mt-1">
+                  {promptSegments.map((segment, idx) => (
+                    <span
+                      key={idx}
+                      style={{ 
+                        color: segment.color,
+                        textShadow: '0 0 4px rgba(161, 94, 225, 0.3)'
+                      }}
+                    >
+                      {segment.text}
+                    </span>
+                  ))}
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="flex-1 bg-transparent outline-none border-none"
+                    style={{
+                      fontFamily: '"JetBrains Mono", "Fira Code", "Consolas", monospace',
+                      fontSize: '14px',
+                      color: '#E9D5FF',
+                      caretColor: '#C084FC',
+                      textShadow: '0 0 2px rgba(0,0,0,0.5)',
+                    }}
+                    autoComplete="off"
+                    spellCheck={false}
+                    disabled={isStreaming}
+                  />
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </DesktopWindow>
