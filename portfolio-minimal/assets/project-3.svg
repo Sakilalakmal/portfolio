@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#141414" />
+      <stop offset="1" stop-color="#0e0e0e" />
+    </linearGradient>
+    <pattern id="lines" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M0 26L26 0" stroke="#1f1f1f" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#g3)" />
+  <rect x="0" y="0" width="1600" height="900" fill="url(#lines)" opacity="0.25" />
+
+  <rect x="90" y="130" width="1420" height="640" fill="#101010" stroke="#262626" stroke-width="2" />
+
+  <rect x="130" y="185" width="460" height="18" fill="#1b1b1b" />
+  <rect x="130" y="250" width="700" height="14" fill="#1a1a1a" />
+  <rect x="130" y="280" width="560" height="14" fill="#1a1a1a" />
+
+  <path d="M130 360C380 320 520 480 760 420C980 365 1160 435 1470 380" fill="none" stroke="#2b2b2b" stroke-width="3" />
+  <path d="M130 520C360 470 530 610 780 560C1010 515 1160 565 1470 520" fill="none" stroke="#262626" stroke-width="3" opacity="0.85" />
+  <path d="M130 650H1470" stroke="#242424" stroke-width="2" opacity="0.65" />
+</svg>
+
