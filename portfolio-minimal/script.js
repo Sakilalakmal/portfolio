@@ -14,6 +14,16 @@ function getTargetFromHashLink(link) {
 
 allHashLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+    
+    // Special case: if clicking home link, scroll to top of page
+    if (href === "#home") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      history.pushState(null, "", "#home");
+      return;
+    }
+    
     const target = getTargetFromHashLink(link);
     if (!target) return;
 
@@ -79,49 +89,91 @@ const projectData = {
       "Idempotent consumers for reliability",
       "Asynchronous workflows (order → payment → inventory)"
     ],
-    diagram: `<svg viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-width="1">
-      <style>text{fill:rgba(255,255,255,0.8);font-size:10px;font-family:sans-serif}</style>
-      <rect x="150" y="10" width="100" height="30" stroke="rgba(255,255,255,0.4)"/>
-      <text x="200" y="30" text-anchor="middle">Client</text>
-      <line x1="200" y1="40" x2="200" y2="60" stroke="rgba(255,255,255,0.3)"/>
-      <polygon points="200,65 195,55 205,55" fill="rgba(255,255,255,0.3)"/>
-      <rect x="130" y="70" width="140" height="30" stroke="rgba(255,255,255,0.5)"/>
-      <text x="200" y="90" text-anchor="middle">API Gateway</text>
-      <line x1="200" y1="100" x2="200" y2="120" stroke="rgba(255,255,255,0.3)"/>
-      <polygon points="200,125 195,115 205,115" fill="rgba(255,255,255,0.3)"/>
-      <rect x="20" y="130" width="70" height="40" stroke="rgba(255,255,255,0.4)"/>
-      <text x="55" y="155" text-anchor="middle">Auth</text>
-      <rect x="100" y="130" width="70" height="40" stroke="rgba(255,255,255,0.4)"/>
-      <text x="135" y="155" text-anchor="middle">Product</text>
-      <rect x="180" y="130" width="70" height="40" stroke="rgba(255,255,255,0.4)"/>
-      <text x="215" y="155" text-anchor="middle">Order</text>
-      <rect x="260" y="130" width="70" height="40" stroke="rgba(255,255,255,0.4)"/>
-      <text x="295" y="155" text-anchor="middle">Payment</text>
-      <rect x="340" y="130" width="50" height="40" stroke="rgba(255,255,255,0.4)"/>
-      <text x="365" y="155" text-anchor="middle">Cart</text>
-      <line x1="55" y1="170" x2="55" y2="190" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="135" y1="170" x2="135" y2="190" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="215" y1="170" x2="215" y2="190" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="295" y1="170" x2="295" y2="190" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="365" y1="170" x2="365" y2="190" stroke="rgba(255,255,255,0.2)"/>
-      <rect x="30" y="195" width="50" height="25" stroke="rgba(255,255,255,0.3)"/>
-      <text x="55" y="212" text-anchor="middle" font-size="8">auth_db</text>
-      <rect x="110" y="195" width="50" height="25" stroke="rgba(255,255,255,0.3)"/>
-      <text x="135" y="212" text-anchor="middle" font-size="8">prod_db</text>
-      <rect x="190" y="195" width="50" height="25" stroke="rgba(255,255,255,0.3)"/>
-      <text x="215" y="212" text-anchor="middle" font-size="8">order_db</text>
-      <rect x="270" y="195" width="50" height="25" stroke="rgba(255,255,255,0.3)"/>
-      <text x="295" y="212" text-anchor="middle" font-size="8">pay_db</text>
-      <rect x="340" y="195" width="50" height="25" stroke="rgba(255,255,255,0.3)"/>
-      <text x="365" y="212" text-anchor="middle" font-size="8">cart_db</text>
-      <line x1="55" y1="170" x2="200" y2="250" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="135" y1="170" x2="200" y2="250" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="215" y1="170" x2="200" y2="250" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="295" y1="170" x2="200" y2="250" stroke="rgba(255,255,255,0.2)"/>
-      <line x1="365" y1="170" x2="200" y2="250" stroke="rgba(255,255,255,0.2)"/>
-      <rect x="130" y="255" width="140" height="35" stroke="rgba(255,255,255,0.5)"/>
-      <text x="200" y="278" text-anchor="middle">RabbitMQ</text>
-      <text x="200" y="290" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)">Events</text>
+    diagram: `<svg viewBox="0 0 800 650" fill="none" stroke="currentColor" stroke-width="1">
+      <style>text{fill:rgba(255,255,255,0.9);font-size:16px;font-family:sans-serif;font-weight:500}</style>
+      
+      <!-- Client -->
+      <rect x="300" y="20" width="200" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="400" y="55" text-anchor="middle">Client (Web + Mobile)</text>
+      <line x1="400" y1="80" x2="400" y2="110" stroke="rgba(255,255,255,0.4)"/>
+      <polygon points="400,115 395,105 405,105" fill="rgba(255,255,255,0.4)"/>
+      
+      <!-- API Gateway -->
+      <rect x="280" y="120" width="240" height="70" stroke="rgba(255,255,255,0.5)"/>
+      <text x="400" y="155" text-anchor="middle">API Gateway</text>
+      <text x="400" y="175" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.6)">(JWT Auth + Routing)</text>
+      
+      <!-- Microservices Row -->
+      <rect x="50" y="250" width="120" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="110" y="285" text-anchor="middle">Auth</text>
+      
+      <rect x="200" y="250" width="120" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="260" y="285" text-anchor="middle">Product</text>
+      
+      <rect x="350" y="250" width="120" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="410" y="285" text-anchor="middle">Order</text>
+      
+      <rect x="500" y="250" width="120" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="560" y="285" text-anchor="middle">Payment</text>
+      
+      <rect x="640" y="250" width="110" height="60" stroke="rgba(255,255,255,0.5)"/>
+      <text x="695" y="275" text-anchor="middle" font-size="14">Cart/Review/</text>
+      <text x="695" y="295" text-anchor="middle" font-size="14">Notification</text>
+      
+      <!-- Gateway to Services -->
+      <line x1="350" y1="190" x2="110" y2="250" stroke="rgba(255,255,255,0.3)"/>
+      <line x1="370" y1="190" x2="260" y2="250" stroke="rgba(255,255,255,0.3)"/>
+      <line x1="400" y1="190" x2="410" y2="250" stroke="rgba(255,255,255,0.3)"/>
+      <line x1="430" y1="190" x2="560" y2="250" stroke="rgba(255,255,255,0.3)"/>
+      <line x1="450" y1="190" x2="695" y2="250" stroke="rgba(255,255,255,0.3)"/>
+      
+      <!-- Databases -->
+      <rect x="60" y="350" width="100" height="40" stroke="rgba(255,255,255,0.35)"/>
+      <text x="110" y="375" text-anchor="middle" font-size="13">auth_db</text>
+      <line x1="110" y1="310" x2="110" y2="350" stroke="rgba(255,255,255,0.25)"/>
+      
+      <rect x="210" y="350" width="100" height="40" stroke="rgba(255,255,255,0.35)"/>
+      <text x="260" y="375" text-anchor="middle" font-size="13">prod_db</text>
+      <line x1="260" y1="310" x2="260" y2="350" stroke="rgba(255,255,255,0.25)"/>
+      
+      <rect x="360" y="350" width="100" height="40" stroke="rgba(255,255,255,0.35)"/>
+      <text x="410" y="375" text-anchor="middle" font-size="13">order_db</text>
+      <line x1="410" y1="310" x2="410" y2="350" stroke="rgba(255,255,255,0.25)"/>
+      
+      <rect x="510" y="350" width="100" height="40" stroke="rgba(255,255,255,0.35)"/>
+      <text x="560" y="375" text-anchor="middle" font-size="13">pay_db</text>
+      <line x1="560" y1="310" x2="560" y2="350" stroke="rgba(255,255,255,0.25)"/>
+      
+      <rect x="645" y="350" width="100" height="40" stroke="rgba(255,255,255,0.35)"/>
+      <text x="695" y="375" text-anchor="middle" font-size="13">other_dbs</text>
+      <line x1="695" y1="310" x2="695" y2="350" stroke="rgba(255,255,255,0.25)"/>
+      
+      <!-- RabbitMQ -->
+      <rect x="250" y="480" width="300" height="80" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+      <text x="400" y="510" text-anchor="middle" font-size="18">RabbitMQ Exchange</text>
+      <text x="400" y="535" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.6)">(Event-Driven Communication)</text>
+      <text x="400" y="552" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.5)">Idempotent Consumers</text>
+      
+      <!-- Event Publishers (green) -->
+      <line x1="410" y1="310" x2="350" y2="480" stroke="#00FF00" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="365" y="400" font-size="11" fill="#00FF00">Publish</text>
+      
+      <line x1="560" y1="310" x2="450" y2="480" stroke="#00FF00" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="490" y="400" font-size="11" fill="#00FF00">Publish</text>
+      
+      <!-- Event Consumers (red) -->
+      <line x1="350" y1="480" x2="260" y2="310" stroke="#FF6B6B" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="280" y="400" font-size="11" fill="#FF6B6B">Subscribe</text>
+      
+      <line x1="450" y1="480" x2="695" y2="310" stroke="#FF6B6B" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="540" y="400" font-size="11" fill="#FF6B6B">Subscribe</text>
+      
+      <!-- Legend -->
+      <text x="50" y="610" font-size="13" fill="rgba(255,255,255,0.7)">Legend:</text>
+      <line x1="50" y1="625" x2="100" y2="625" stroke="#00FF00" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="110" y="630" font-size="12" fill="#00FF00">Event Publishers</text>
+      <line x1="250" y1="625" x2="300" y2="625" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="310" y="630" font-size="12" fill="#FF6B6B">Idempotent Consumers</text>
     </svg>`
   },
   "devwatchman": {

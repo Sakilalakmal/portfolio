@@ -129,6 +129,11 @@ a {
 .nav__logo {
   letter-spacing: 0.02em;
   font-size: 1.05rem;
+  transition: color var(--t-fast);
+}
+
+.nav__logo:hover {
+  color: #f7c547;
 }
 
 .nav__links {
@@ -146,7 +151,7 @@ a {
 }
 
 .nav__link:hover {
-  color: var(--text);
+  color: #f7c547;
 }
 
 .nav__link.is-active {
@@ -524,7 +529,9 @@ a {
   height: 2px;
   background: rgba(255, 255, 255, 0.6);
   margin-top: 1.2rem;
-  transition: width 220ms ease, background 220ms ease;
+  transition:
+    width 220ms ease,
+    background 220ms ease;
 }
 
 .project:hover .project__underline,
@@ -589,7 +596,7 @@ a {
   letter-spacing: 0.02em;
   border-radius: 0;
   cursor: pointer;
-  transition: 
+  transition:
     transform var(--t),
     box-shadow var(--t),
     background var(--t);
@@ -637,7 +644,9 @@ a {
   background: var(--panel);
   border: 1px solid rgba(42, 42, 42, 0.9);
   box-shadow: 0 30px 70px var(--shadow);
-  transition: filter var(--t), transform var(--t);
+  transition:
+    filter var(--t),
+    transform var(--t);
 }
 
 .project__image:hover {
@@ -666,7 +675,11 @@ a {
 /* ===== NEW ABOUT SECTION (Editorial Style) ===== */
 .about-new {
   background: #f7f7f7;
-  background-image: radial-gradient(circle, rgba(150, 140, 160, 0.25) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(150, 140, 160, 0.25) 1px,
+    transparent 1px
+  );
   background-size: 24px 24px;
   color: #1a1a1a;
   padding-block: var(--space-9);
@@ -841,7 +854,9 @@ a {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
-  transition: color var(--t-fast), opacity var(--t-fast);
+  transition:
+    color var(--t-fast),
+    opacity var(--t-fast);
 }
 
 .contact-new__icon {
@@ -986,7 +1001,9 @@ a {
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
 }
 
 .modal.is-open {
@@ -1093,7 +1110,9 @@ a {
 .modal__tech img {
   height: 30px;
   width: auto;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
 }
 
 .modal__tech img:hover {
