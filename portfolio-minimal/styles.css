@@ -43,6 +43,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("./fonts/PermanentMarker-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -474,11 +482,11 @@ a {
 /* Large editorial section title */
 .section-head__title {
   margin: 0;
-  font-family: "Canela.light", ui-serif, Georgia, "Times New Roman", serif;
+  font-family: "Permanent Marker", cursive;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.05;
   letter-spacing: -0.01em;
-  font-weight: 300;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.95);
 }
 
@@ -700,11 +708,11 @@ a {
 
 .about-new__title {
   margin: 0 0 var(--space-5) 0;
-  font-family: "Canela.light", ui-serif, Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: "Permanent Marker", cursive;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.1;
   letter-spacing: -0.01em;
-  font-weight: 300;
+  font-weight: 400;
   color: #1a1a1a;
 }
 
@@ -817,18 +825,19 @@ a {
 
 .contact-new__headline {
   margin: 0;
-  font-family: "Canela.light", ui-serif, Georgia, "Times New Roman", serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: "Permanent Marker", cursive;
+  font-size: clamp(3rem, 6vw, 5rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .contact-new__sub {
   margin: var(--space-5) 0 0 0;
+  font-family: "Permanent Marker", cursive;
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.6);
-  font-style: italic;
+  font-style: normal;
 }
 
 /* Right column: links */
