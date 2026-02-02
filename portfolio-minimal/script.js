@@ -15,7 +15,7 @@ function getTargetFromHashLink(link) {
 allHashLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     const href = link.getAttribute("href");
-    
+
     // Special case: if clicking home link, scroll to top of page
     if (href === "#home") {
       event.preventDefault();
@@ -23,7 +23,7 @@ allHashLinks.forEach((link) => {
       history.pushState(null, "", "#home");
       return;
     }
-    
+
     const target = getTargetFromHashLink(link);
     if (!target) return;
 
@@ -42,14 +42,16 @@ if ("IntersectionObserver" in window && sections.length) {
   const linkById = new Map(
     navLinks
       .map((a) => [a.getAttribute("href")?.replace("#", ""), a])
-      .filter(([id]) => Boolean(id))
+      .filter(([id]) => Boolean(id)),
   );
 
   const observer = new IntersectionObserver(
     (entries) => {
       const visible = entries
         .filter((e) => e.isIntersecting)
-        .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+        .sort(
+          (a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0),
+        )[0];
 
       if (!visible) return;
 
@@ -61,7 +63,7 @@ if ("IntersectionObserver" in window && sections.length) {
       root: null,
       threshold: [0.25, 0.4, 0.6],
       rootMargin: "-20% 0px -70% 0px",
-    }
+    },
   );
 
   sections.forEach((section) => observer.observe(section));
@@ -71,7 +73,8 @@ if ("IntersectionObserver" in window && sections.length) {
 const projectData = {
   "kada-mandiya": {
     title: "Kada Mandiya",
-    summary: "Production-grade, event-driven e-commerce platform built with a microservices architecture.",
+    summary:
+      "Production-grade, event-driven e-commerce platform built with a microservices architecture.",
     techBadges: [
       { name: "Node.js", color: "339933", logo: "nodedotjs" },
       { name: "Express", color: "000000", logo: "express" },
@@ -80,14 +83,14 @@ const projectData = {
       { name: "SQL Server", color: "CC2927", logo: "microsoftsqlserver" },
       { name: "Stripe", color: "008CDD", logo: "stripe" },
       { name: "Next.js", color: "000000", logo: "nextdotjs" },
-      { name: "Docker", color: "2496ED", logo: "docker" }
+      { name: "Docker", color: "2496ED", logo: "docker" },
     ],
     highlights: [
       "Microservices with database-per-service pattern",
       "Event-driven communication using RabbitMQ",
       "API Gateway for routing, auth, and JWT verification",
       "Idempotent consumers for reliability",
-      "Asynchronous workflows (order → payment → inventory)"
+      "Asynchronous workflows (order → payment → inventory)",
     ],
     diagram: `<svg viewBox="0 0 800 650" fill="none" stroke="currentColor" stroke-width="1">
       <style>text{fill:rgba(255,255,255,0.9);font-size:16px;font-family:sans-serif;font-weight:500}</style>
@@ -174,27 +177,33 @@ const projectData = {
       <text x="110" y="630" font-size="12" fill="#00FF00">Event Publishers</text>
       <line x1="250" y1="625" x2="300" y2="625" stroke="#FF6B6B" stroke-width="2" stroke-dasharray="5,3"/>
       <text x="310" y="630" font-size="12" fill="#FF6B6B">Idempotent Consumers</text>
-    </svg>`
+    </svg>`,
   },
-  "devwatchman": {
+  devwatchman: {
     title: "DevWatchMan",
-    summary: "Developer-focused monitoring and observability platform for system metrics, logs, and runtime visibility.",
+    summary:
+      "Developer-focused monitoring and observability platform for system metrics, logs, and runtime visibility.",
     techBadges: [
       { name: "Python", color: "3776AB", logo: "python" },
       { name: "FastAPI", color: "009688", logo: "fastapi" },
       { name: "SQLite", color: "003B57", logo: "sqlite" },
-      { name: "JavaScript", color: "F7DF1E", logo: "javascript", logoColor: "black" },
+      {
+        name: "JavaScript",
+        color: "F7DF1E",
+        logo: "javascript",
+        logoColor: "black",
+      },
       { name: "HTML5", color: "E34F26", logo: "html5" },
       { name: "CSS3", color: "1572B6", logo: "css3" },
       { name: "Tauri", color: "24C8DB", logo: "tauri" },
-      { name: "Rust", color: "000000", logo: "rust" }
+      { name: "Rust", color: "000000", logo: "rust" },
     ],
     highlights: [
       "System metrics collected via psutil",
       "REST + WebSocket APIs for real-time updates",
       "Charts rendered on the frontend",
       "Desktop wrapper using Tauri",
-      "Designed for extensibility and performance"
+      "Designed for extensibility and performance",
     ],
     diagram: `<svg viewBox="0 0 350 280" fill="none" stroke="currentColor" stroke-width="1">
       <style>text{fill:rgba(255,255,255,0.8);font-size:10px;font-family:sans-serif}</style>
@@ -220,11 +229,12 @@ const projectData = {
       <line x1="280" y1="220" x2="230" y2="135" stroke="rgba(255,255,255,0.2)"/>
       <text x="90" y="170" font-size="8" fill="rgba(255,255,255,0.5)">REST + WS</text>
       <text x="250" y="170" font-size="8" fill="rgba(255,255,255,0.5)">REST</text>
-    </svg>`
+    </svg>`,
   },
   "lak-lms": {
     title: "Lak LMS",
-    summary: "Modern Learning Management System with scalable backend logic and rich content features.",
+    summary:
+      "Modern Learning Management System with scalable backend logic and rich content features.",
     techBadges: [
       { name: "Next.js", color: "000000", logo: "nextdotjs" },
       { name: "React", color: "61DAFB", logo: "react", logoColor: "black" },
@@ -233,14 +243,14 @@ const projectData = {
       { name: "Prisma", color: "2D3748", logo: "prisma" },
       { name: "AWS", color: "FF9900", logo: "amazonaws", logoColor: "black" },
       { name: "Stripe", color: "008CDD", logo: "stripe" },
-      { name: "Docker", color: "2496ED", logo: "docker" }
+      { name: "Docker", color: "2496ED", logo: "docker" },
     ],
     highlights: [
       "Server Actions for mutations",
       "Secure authentication and authorization",
       "Modular component system",
       "Cloud storage and payment integration",
-      "CI/CD-driven deployments"
+      "CI/CD-driven deployments",
     ],
     diagram: `<svg viewBox="0 0 350 260" fill="none" stroke="currentColor" stroke-width="1">
       <style>text{fill:rgba(255,255,255,0.8);font-size:10px;font-family:sans-serif}</style>
@@ -264,8 +274,8 @@ const projectData = {
       <text x="300" y="160" text-anchor="middle">Stripe</text>
       <line x1="80" y1="155" x2="100" y2="155" stroke="rgba(255,255,255,0.2)"/>
       <line x1="250" y1="155" x2="270" y2="155" stroke="rgba(255,255,255,0.2)"/>
-    </svg>`
-  }
+    </svg>`,
+  },
 };
 
 // Modal elements
@@ -285,28 +295,28 @@ function openModal(projectId) {
   // Populate content
   modalTitle.textContent = data.title;
   modalSummary.textContent = data.summary;
-  
+
   // Tech badges (shields.io)
   modalTech.innerHTML = data.techBadges
-    .map(b => {
+    .map((b) => {
       const logoColor = b.logoColor || "white";
       return `<img src="https://img.shields.io/badge/${encodeURIComponent(b.name)}-${b.color}?style=for-the-badge&logo=${b.logo}&logoColor=${logoColor}" alt="${b.name}" />`;
     })
     .join("");
-  
+
   // Highlights
   modalHighlights.innerHTML = data.highlights
-    .map(h => `<li>${h}</li>`)
+    .map((h) => `<li>${h}</li>`)
     .join("");
-  
+
   // Diagram
   modalDiagram.innerHTML = data.diagram;
-  
+
   // Show modal
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
-  
+
   // Focus trap
   modalClose?.focus();
 }
@@ -323,7 +333,7 @@ document.querySelectorAll("[data-project]").forEach((title) => {
   title.addEventListener("click", () => {
     openModal(title.dataset.project);
   });
-  
+
   title.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -341,3 +351,139 @@ document.addEventListener("keydown", (e) => {
     closeModal();
   }
 });
+
+// ===== GHOST WORDS CURSOR TRAIL =====
+(function initGhostWords() {
+  const ghostLayer = document.getElementById("ghost-layer");
+  if (!ghostLayer) return;
+
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (prefersReducedMotion) return;
+
+  // Check if mobile device
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) return;
+
+  // Words to use (rotate randomly)
+  const words = [
+    // Roles
+    "FULL STACK DEVELOPER",
+    "BACKEND DEVELOPER",
+    "FRONTEND DEVELOPER",
+    "DEVOPS",
+    "DATA ENGINEERING",
+    "MICROSERVICES",
+    "EVENT-DRIVEN",
+    // Tech stack
+    "NODE.JS",
+    "TYPESCRIPT",
+    "EXPRESS",
+    "RABBITMQ",
+    "SQL SERVER",
+    "DOCKER",
+    "AWS",
+    "FASTAPI",
+    "PYTHON",
+    "POSTGRESQL",
+    "PRISMA",
+    "NEXT.JS",
+    "REACT",
+    "JENKINS",
+    "STRIPE",
+    "TAURI",
+    "VITE",
+  ];
+
+  let lastSpawnTime = 0;
+  const spawnThrottle = 75; // ~75ms between spawns (60-90ms range)
+
+  // Helper: get random item from array
+  function random(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  // Helper: random number in range
+  function randomRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Curated palette of vibrant, unique colors
+  const colorPalette = [
+    "rgba(255, 87, 87, 0.6)",    // Bright coral red
+    "rgba(72, 219, 251, 0.6)",   // Electric cyan
+    "rgba(255, 195, 0, 0.6)",    // Golden yellow
+    "rgba(138, 43, 226, 0.6)",   // Blue violet
+    "rgba(255, 105, 180, 0.6)",  // Hot pink
+    "rgba(50, 205, 50, 0.6)",    // Lime green
+    "rgba(255, 140, 0, 0.6)",    // Dark orange
+    "rgba(148, 0, 211, 0.6)",    // Dark violet
+    "rgba(0, 255, 255, 0.6)",    // Aqua
+    "rgba(255, 20, 147, 0.6)",   // Deep pink
+    "rgba(124, 252, 0, 0.6)",    // Lawn green
+    "rgba(255, 69, 0, 0.6)",     // Orange red
+    "rgba(186, 85, 211, 0.6)",   // Medium orchid
+    "rgba(0, 191, 255, 0.6)",    // Deep sky blue
+    "rgba(255, 215, 0, 0.6)",    // Gold
+    "rgba(147, 112, 219, 0.6)",  // Medium purple
+    "rgba(57, 255, 20, 0.6)",    // Neon green
+    "rgba(255, 0, 127, 0.6)",    // Neon pink
+    "rgba(0, 255, 127, 0.6)",    // Spring green
+    "rgba(255, 99, 71, 0.6)"     // Tomato
+  ];
+
+  // Helper: get random color from palette
+  function getRandomColor() {
+    return random(colorPalette);
+  }
+
+  // Spawn a ghost word at cursor position
+  function spawnGhostWord(x, y) {
+    const now = Date.now();
+    if (now - lastSpawnTime < spawnThrottle) return;
+    lastSpawnTime = now;
+
+    const word = random(words);
+    const span = document.createElement("span");
+    span.className = "ghost-word";
+    span.textContent = word;
+
+    // Random styling within specified ranges
+    const fontSize = randomRange(14, 28); // 14px-28px
+    const rotation = randomRange(-6, 6); // -6deg to +6deg
+    const opacity = randomRange(0.3, 0.6); // Visible opacity for effect
+    const duration = randomRange(800, 1200); // 800-1200ms
+
+    // Small random offset from cursor
+    const offsetX = randomRange(-20, 20);
+    const offsetY = randomRange(-20, 20);
+
+    // Get random vibrant color from palette
+    const color = getRandomColor();
+
+    // Apply styles
+    span.style.left = `${x + offsetX}px`;
+    span.style.top = `${y + offsetY}px`;
+    span.style.fontSize = `${fontSize}px`;
+    span.style.color = color;
+    span.style.setProperty("--rotation", `${rotation}deg`);
+    span.style.setProperty("--opacity", opacity);
+    span.style.animation = `fadeFloat ${duration}ms ease-out forwards`;
+
+    ghostLayer.appendChild(span);
+
+    // Remove element after animation completes to prevent memory leaks
+    setTimeout(() => {
+      if (span.parentNode === ghostLayer) {
+        ghostLayer.removeChild(span);
+      }
+    }, duration);
+  }
+
+  // Mousemove handler
+  document.addEventListener("mousemove", (e) => {
+    spawnGhostWord(e.clientX, e.clientY);
+  });
+})();

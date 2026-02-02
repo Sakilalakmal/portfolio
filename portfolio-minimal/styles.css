@@ -1194,3 +1194,53 @@ body.modal-open {
     font-size: clamp(1.6rem, 5vw, 2.2rem);
   }
 }
+
+/* ===== GHOST WORDS CURSOR TRAIL ===== */
+#ghost-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+  mix-blend-mode: normal;
+}
+
+.ghost-word {
+  position: absolute;
+  font-family: "Canela.light", ui-serif, Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  user-select: none;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(var(--rotation));
+  }
+  10% {
+    opacity: var(--opacity);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) rotate(var(--rotation));
+  }
+}
+
+/* Disable effect on mobile and for users who prefer reduced motion */
+@media (max-width: 768px) {
+  #ghost-layer {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ghost-layer {
+    display: none;
+  }
+}
